@@ -1,9 +1,6 @@
 <?php
 session_start();
 include('koneksi.php');
-echo "<pre>";
-print_r($_SESSION['keranjang']);
-echo "</pre>";
 if (isset($_GET['id_produk'])) {
     $id_produk = $_GET['id_produk'];
 
@@ -15,6 +12,7 @@ if (isset($_GET['id_produk'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="utf-8">
@@ -222,38 +220,140 @@ if (isset($_GET['id_produk'])) {
                     </thead>
                     <tbody class="align-middle">
                         <?php
-                        $no = 1; // Pindahkan inisialisasi $no di luar loop
-                        $grandTotal = 0; // Tambahkan variabel untuk menghitung grand total
-                        foreach ($_SESSION['keranjang'] as $id_produk => $jumlah) :
-                            $query = "SELECT * FROM tb_produk_pria WHERE id='$id_produk'";
-                            $sql = mysqli_query($koneksi, $query);
+    
+                        include('koneksi.php');
 
-                            while ($data = mysqli_fetch_array($sql)) {
-                                $total = $data['harga'] * $jumlah;
-                                $grandTotal += $total; // Tambahkan total ke grand total
+                        class Product
+                        {
+                            public $id;
+                            public $name;
+                            public $price;
+
+                            public function __construct($id, $name, $price)
+                            {
+                                $this->id = $id;
+                                $this->name = $name;
+                                $this->price = $price;
+                            }
+
+                            public function getId()
+                            {
+                                return $this->id;
+                            }
+
+                            public function getName()
+                            {
+                                return $this->name;
+                            }
+
+                            public function getPrice()
+                            {
+                                return $this->price;
+                            }
+                            public function getGrandTotal()
+                            {
+                                return $this->price;
+                            }
+                            public function jumlah()
+                            {
+                                return $this->id;
+                            }
+                         
+                        }
+
+                        class ShoppingCart
+                        {
+                            private $cartItems = [];
+
+                            public function addItem($product, $quantity)
+                            {
+                                if (isset($this->cartItems[$product->getId()])) {
+                                    // If the product is already in the cart, update the quantity
+                                    $this->cartItems[$product->getId()]['quantity'] += $quantity;
+                                } else {
+                                    // Add the new product to the cart
+                                    $this->cartItems[$product->getId()] = ['product' => $product, 'quantity' => $quantity];
+                                }
+                            }
+
+                            public function removeItem($productId)
+                            {
+                                if (isset($this->cartItems[$productId])) {
+                                    unset($this->cartItems[$productId]);
+                                }
+                            }
+
+                            public function getGrandTotal()
+                            {
+                                $grandTotal = 0;
+                                foreach ($this->cartItems as $item) {
+                                    $grandTotal += $item['product']->getPrice() * $item['quantity'];
+                                }
+                                return $grandTotal;
+                            }
+
+                            public function getTotalWithShipping()
+                            {
+                                return $this->getGrandTotal() + 10000; // Assuming fixed shipping cost
+                            }
+
+                            public function getCartItems()
+                            {
+                                return $this->cartItems;
+                            }
+                        }
+
+                        // Check if the cart session variable exists, if not, create a new instance
+                        if (!isset($_SESSION['shopping_cart'])) {
+                            $_SESSION['shopping_cart'] = new ShoppingCart();
+                        }
+
+                        // Example usage:
+                        $product1 = new Product(1, 'Product 1', 50);
+                        $product2 = new Product(2, 'Product 2', 75);
+
+                        $cart = $_SESSION['shopping_cart'];
+
+                        // Adding items to the cart
+                        $cart->addItem($product1, 2);
+                        $cart->addItem($product2, 1);
+
+                        // Removing an item from the cart (you can do this based on user actions)
+                        $cart->removeItem(1);
                         ?>
-                                <tr>
-                                    <td> <input type="checkbox" name="selected_items[]"></td>
-                                    <td><?php echo $no++ ?></td>
-                                    <td><?php echo $data['nama_produk'] ?></td>
-                                    <td><?php echo $data['harga'] ?></td>
-                                    <td><?php echo $jumlah ?></td>
-                                    <td><?php echo $total ?></td>
-
-                                    <td style="text-align:center;"> <a href="?id_produk=<?php echo $id_produk; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                                            </svg></a></td>
-
-
-                                </tr>
 
                         <?php
-                            }
-                        endforeach
+                        // Contoh pengambilan produk dari database menggunakan kelas Product
+                        $koneksi = mysqli_connect("localhost", "root", "", "ecommerce");
+                        $query = "SELECT * FROM tb_produk_pria LIMIT 1";
+                        $result = mysqli_query($koneksi, $query);
+                        $no=1;
+
+                        if ($data = mysqli_fetch_assoc($result)) {
+                            $productFromDatabase = new Product($data['id'], $data['nama_produk'], $data['harga']);
+                        }
                         ?>
+
+
+                        <tr>
+                            <td> <input type="checkbox" name="selected_items[]"></td>
+                            <td><?php echo $no++ ?></td>
+                            <td><?= $productFromDatabase->getName() ?></td>
+                            <td>Rp.<?= number_format($productFromDatabase->getPrice(), 0, ',', '.') ?></td>
+                            <td><?= $productFromDatabase->jumlah() ?></td>
+                            <td><?= $productFromDatabase->getGrandTotal() ?></td>
+
+                            <td style="text-align:center;"> <a href="?id_produk=<?php echo $id_produk; ?>"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                                    </svg></a></td>
+
+
+                        </tr>
+
+
                         <tr>
                             <td colspan="4" class="text-right">Grand Total</td>
-                            <td><?php echo $grandTotal; ?></td>
+                            <td>Rp<?= $productFromDatabase->getGrandTotal() ?></td>
                         </tr>
                     </tbody>
 
@@ -279,19 +379,18 @@ if (isset($_GET['id_produk'])) {
                         <div class="border-bottom pb-2">
                             <div class="d-flex justify-content-between mb-3">
                                 <h6>Total harga</h6>
-                                <h6>Rp.<?php echo $grandTotal; ?></h6>
+                                <h6>Rp<?= $productFromDatabase->getGrandTotal() ?></h6>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Ongkir</h6>
                                 <h6 class="font-weight-medium">Rp.10000</h6>
-                                <?php $total += $grandTotal + 10000; // Menambahkan biaya pengiriman ke total 
-                                ?>
+                                <?= $productFromDatabase->getGrandTotal() ?>
                             </div>
                         </div>
                         <div class="pt-2">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5>Total yang harus dibayar</h5>
-                                <h5><?php echo $total ?></h5>
+                                <h5><?= $productFromDatabase->getGrandTotal()+10000 ?></h5>
                             </div>
                         </div>
                     </div>
