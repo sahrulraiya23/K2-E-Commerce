@@ -33,12 +33,12 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Buat sebuah Akun!</h1>
                             </div>
                             <form class="user" method="get">
-                                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="full name" name="fullname">
+                                <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="Nama Lengkap" name="fullname">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="email" name="email">
+                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email" name="email">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
@@ -53,23 +53,41 @@
                             <?php
                             include 'koneksi.php';
 
+                            class User
+                            {   
+                                private $koneksi;
+
+                                public function __construct($koneksi)
+                                {
+                                    $this->koneksi = $koneksi;
+                                }
+
+                                public function daftarAkun($fullname, $email, $password)
+                                {
+                                    // Hash password menggunakan password_hash()
+                                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                                    $query = "INSERT INTO tb_user(fullname, email, password) VALUES ('$fullname', '$email', '$hashedPassword')";
+                                    $sql = mysqli_query($this->koneksi, $query);
+
+                                    if($sql){
+                                        header("location: login.php?success=1");
+                                        exit();
+                                    }else{
+                                        echo "Error: ".$query."<br>".mysqli_error($this->koneksi);
+                                    }
+                                }
+                            }
+
+                            // Usage
                             if (isset($_GET['input']) && $_GET['input'] == 'Register Account') {
+                                $user = new User($koneksi);
+
                                 $username = $_GET['fullname'];
                                 $email = $_GET['email'];
                                 $password = $_GET['password'];
-
-                                // Hash password menggunakan password_hash()
-                                $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-                                $query = "INSERT INTO tb_user(fullname, email, password) VALUES ('$username', '$email', '$hashedPassword')";
-                                $sql = mysqli_query($koneksi, $query);
-
-                                if ($sql) {
-                                    header("location: login.php?success=1");
-                                    exit();
-                                } else {
-                                    echo "Error: " . $query . "<br>" . mysqli_error($koneksi);
-                                }
+                                
+                                $user->daftarAkun($username, $email, $password);
                             }
                             ?>
 
