@@ -67,26 +67,41 @@ session_start();
                                         <hr>
                                     </form>
                                     <?php
+                                    class Authentication
+                                    {
+                                        private $koneksi;
+                                    
+                                        public function __construct($koneksi)
+                                        {
+                                            $this->koneksi = $koneksi;
+                                        }
+                                    
+                                        public function login($email, $password)
+                                        {
+                                            $query = "SELECT * FROM tb_user WHERE email='$email' AND password='$password'";
+                                            $result = mysqli_query($this->koneksi, $query);
+                                    
+                                            return $result;
+                                        }
+                                    }
+                                    
                                     include 'koneksi.php';
+                                    
+                                    $authentication = new Authentication($koneksi);
+                                    
                                     if (isset($_GET['input']) && $_GET['input'] == 'login') {
                                         $email = $_GET['email'];
                                         $password = $_GET['password'];
-
-                                        $query = "SELECT * FROM tb_user WHERE email='$email' AND password='$password'";
-                                        $result = mysqli_query($koneksi, $query);
-
+                                    
+                                        $result = $authentication->login($email, $password);
+                                    
                                         if ($result) {
                                             header("location: index.php");
                                             exit();
                                         }
                                     }
                                     ?>
-                                    <hr> <div class="text-center">
-                                        <a class="small" href="register.php">already have an account?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
+                                    
                                     <div class="text-center">
                                         <a class="small" href="register.php">Create an Account!</a>
                                     </div>
