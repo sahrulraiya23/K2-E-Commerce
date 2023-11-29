@@ -1,7 +1,7 @@
 # K2-E-Commerce
 
 Kelompok 2 :
-E1E122002_Andi Anugrah Ma'Arif
+E1E122002_ANDI ANUGRAH MA'ARIF
 E1E122012_Eviriawan
 E1E122026_Nurdian Kasim
 E1E122028_Ratnasari
