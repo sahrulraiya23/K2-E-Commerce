@@ -44,13 +44,11 @@
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                     </a>
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle"
-                            style="padding-bottom: 2px;">0</span>
+                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
                     </a>
                 </div>
             </div>
@@ -87,17 +85,14 @@
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
-                    href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
                     <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Kategori</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
-                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i
-                                    class="fa fa-angle-right float-right mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                 <a href="" class="dropdown-item">Men's Dresses</a>
                                 <a href="" class="dropdown-item">Women's Dresses</a>
@@ -120,8 +115,7 @@
                             <a href="index.php" class="nav-item nav-link active">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Produk</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i
-                                        class="fa fa-angle-down mt-1"></i></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.php" class="dropdown-item">Keranjang</a>
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
@@ -132,8 +126,7 @@
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="cart.php" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle"
-                                    style="padding-bottom: 2px;">0</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
                             </a>
                         </div>
                     </div>
@@ -160,7 +153,7 @@
 
     <?php
     if (isset($_GET['pw'])) {
-        ?>
+    ?>
         <!-- Products Start -->
         <?php
 
@@ -231,17 +224,15 @@
         $totalProducts = $rowCount['total'];
         ?>
         <div class='row'>
-            <?php for ($i = 1; $i <= $totalProducts; $i++): ?>
+            <?php for ($i = 1; $i <= $totalProducts; $i++) : ?>
                 <?php $product = $productRepository->getProductById($i); ?>
                 <div class='col-lg-3 col-md-4 col-sm-6 pb-1'>
                     <div class='product-item bg-light mb-4'>
                         <div class='product-img position-relative overflow-hidden'>
-                            <img class='img-fluid w-100' src='img/<?= $product->getImage() ?>' alt=''
-                                style='height: 1000px; object-fit: cover;'>
+                            <img class='img-fluid w-100' src='img/<?= $product->getImage() ?>' alt='' style='height: 1000px; object-fit: cover;'>
                             <div class='product-action'>
                                 <a class='btn btn-outline-dark btn-square' href=''><i class='fa fa-shopping-cart'></i></a>
-                                <a class='btn btn-outline-dark btn-square' href='detail.php?idw=<?php echo $i ?>'><i
-                                        class='fa fa-search'></i></a>
+                                <a class='btn btn-outline-dark btn-square' href='detail.php?idw=<?php echo $i ?>'><i class='fa fa-search'></i></a>
                             </div>
                         </div>
                         <div class='text-center py-4'>
@@ -263,7 +254,7 @@
 
         </div>
         </div>
-        <?php
+    <?php
     }
     ?>
     <!-- Products End -->
@@ -276,7 +267,7 @@
     <!-- Products Start -->
     <?php
     if (isset($_GET['pp'])) {
-        ?>
+    ?>
         <?php
 
         class Productpria
@@ -346,17 +337,15 @@
         $totalProducts = $rowCount['total'];
         ?>
         <div class='row'>
-            <?php for ($i = 1; $i <= $totalProducts; $i++): ?>
+            <?php for ($i = 1; $i <= $totalProducts; $i++) : ?>
                 <?php $product = $productRepository->getProductById($i); ?>
                 <div class='col-lg-3 col-md-4 col-sm-6 pb-1'>
                     <div class='product-item bg-light mb-4'>
                         <div class='product-img position-relative overflow-hidden'>
-                            <img class='img-fluid w-100' src='img/<?= $product->getImage() ?>' alt=''
-                                style='height: 650px; object-fit: cover;'>
+                            <img class='img-fluid w-100' src='img/<?= $product->getImage() ?>' alt='' style='height: 650px; object-fit: cover;'>
                             <div class='product-action'>
                                 <a class='btn btn-outline-dark btn-square' href=''><i class='fa fa-shopping-cart'></i></a>
-                                <a class='btn btn-outline-dark btn-square' href='detail.php?idp=<?php echo $i ?>'><i
-                                        class='fa fa-search'></i></a>
+                                <a class='btn btn-outline-dark btn-square' href='detail.php?idp=<?php echo $i ?>'><i class='fa fa-search'></i></a>
                             </div>
                         </div>
                         <div class='text-center py-4'>
@@ -379,7 +368,7 @@
         </div>
         </div>
 
-        <?php
+    <?php
     } ?>
 
     <!-- Products End -->
@@ -400,14 +389,11 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-secondary mb-2" href="index.php"><i
-                                    class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Produk
                                 Kami</a>
-                            <a class="text-secondary mb-2" href="cart.php"><i
-                                    class="fa fa-angle-right mr-2"></i>Keranjang</a>
-                            <a class="text-secondary mb-2" href="checkout.php"><i
-                                    class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-secondary mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>
                         </div>

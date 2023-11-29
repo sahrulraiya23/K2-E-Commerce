@@ -1,12 +1,9 @@
 <?php
 session_start();
 include 'koneksi.php';
-session_start();
-//koneksi ke database
-include 'koneksi.php';
 
 // Jika tidak ada session pelanggan (belum login)
-if (!isset($_SESSION["user"])) {
+if (!isset($_SESSION["pelanggan"])) {
     // Diarahkan ke ke login.php
     echo "<script>alert('Silahkan login!')</script>";
     echo "<script>location='login.php';</script>";
@@ -178,28 +175,29 @@ if (!isset($_SESSION["keranjang"])) {
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Detail Tagihan</span></h5>
-                <form action="" method="get"></form>
+                <form action="" method="get">
 
-                <div class="bg-light p-30 mb-5">
+                    <div class="bg-light p-30 mb-5">
 
-                    <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="nama" placeholder="Masukkan Nama">
-                    </div>
+                        <div class="mb-3">
+                            <label for="nama" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="nama" value="<?= $_SESSION['pelanggan']['fullname']; ?>" placeholder="Masukkan Nama">
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat" placeholder="Masukan Alamat Lengkap">
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat" placeholder="Masukan Alamat Lengkap">
+                        </div>
+                        <div class="mb-3">
+                            <label for="hp" class="form-label">No.HP</label>
+                            <input type="number" class="form-control" id="exampleFormControlInput1" name="hp" placeholder="Masukan Nomor Telepon">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $_SESSION['pelanggan']['email']; ?>" name="email" placeholder="Masukan Email">
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="hp" class="form-label">No.HP</label>
-                        <input type="number" class="form-control" id="exampleFormControlInput1" name="hp" placeholder="Masukan Nomor Telepon">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" name="email" placeholder="Masukan Email">
-                    </div>
-                </div>
+                </form>
             </div>
 
             <div class="col-lg-4">
