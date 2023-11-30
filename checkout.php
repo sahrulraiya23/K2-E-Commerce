@@ -66,11 +66,12 @@ class CheckoutPage {
     private $user;
     private $userId;
 
+    // Konstruktor untuk menginisialisasi objek dengan informasi pengguna
     public function __construct($userObj, $userId) {
         $this->user = $userObj;
         $this->userId = $userId;
     }
-
+    // Metode untuk membuat halaman checkout
     public function renderPage() {
         $nama = $this->user->getFullName($this->userId);
         ?>
