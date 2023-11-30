@@ -1,8 +1,6 @@
 <?php
 session_start();
 include '../koneksi.php';
-
-// Buat kelas Admin
 class Admin
 {
     private $koneksi;
@@ -47,7 +45,7 @@ class Admin
     public function tampilkanSidebar()
     {
 ?>
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" style="margin-top: -100px;" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -125,7 +123,8 @@ class Admin
     public function tampilkanTopbar()
     {
     ?>
-        <div id="content-wrapper" class="d-flex flex-column">
+
+        <div id="content-wrapper" class="d-flex flex-column" style="margin-left:225px">
 
             <!-- Main Content -->
             <div id="content">
@@ -317,63 +316,18 @@ class Admin
                 </nav>
                 <!-- End of Topbar -->
 
-                <div class="container">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php
-                            // Check if the 'halaman' parameter is set
-                            if (isset($_GET['halaman'])) {
-                                if ($_GET['halaman'] == "produkpria") {
-                                    include 'produk.php';
-                                } else if ($_GET['halaman'] == "produkwanita") {
-                                    include 'produk.php';
-                                } else if ($_GET['halaman'] == "pembelian") {
-                                    include 'pembelian.php';
-                                } else if ($_GET['halaman'] == "user") {
-                                    include 'user.php';
-                                } else if ($_GET['halaman'] == "tambahprodukpria") {
-                                    include 'tambahproduk.php';
-                                } else if ($_GET['halaman'] == "tambahprodukwanita") {
-                                    include 'tambahproduk.php';
-                                } else if ($_GET['halaman'] == "editprodukpria") {
-                                    include 'editproduk.php';
-                                } else if ($_GET['halaman'] == "editprodukwanita") {
-                                    include 'editproduk.php';
-                                } else if ($_GET['halaman'] == "hapusprodukpria") {
-                                    include 'hapusproduk.php';
-                                } else if ($_GET['halaman'] == "hapusprodukwanita") {
-                                    include 'hapusproduk.php';
-                                } else if ($_GET['halaman'] == "tambahuser") {
-                                    include 'tambahproduk.php';
-                                } else if ($_GET['halaman'] == "logout") {
-                                    include 'logout.php';
-                                }
-                            } else {
-                                $koneksi = mysqli_connect('localhost', 'root', '', 'ecommerce');
-                                $query = "SELECT * FROM admin";
-                                $sql = mysqli_query($koneksi, $query);
-                                $data = mysqli_fetch_array($sql);
-                            ?>
-                                <h2>Hallo <?php echo $data['username'] ?> Selamat Datang</h2>
-                                <a class="btn btn-outline-primary" href="index.php?halaman=produkpria">Data Produk</a>
-                                <a class="btn btn-outline-dark" href="index.php?halaman=produkwanita">Data Produk wanita</a>
-                                <a class="btn btn-outline-danger" href="index.php?halaman=produk">Data Pembelian</a>
-                                <a class="btn btn-outline-info" href="index.php?halaman=produk">Data User</a>
-                            <?php } ?>
-                        </div>
-                    </div>
-                </div>
 
 
 
             </div>
+
 
         </div>
         <?php }
 
     public function tampilkanHalaman()
     {
-        echo '<div class="container"><div class="card"><div class="card-body">';
+        echo '<div class="container" style="margin-left: 250px;margin-top: -550px; width:auto; display: flex; flex-direction: column; min-height: 90vh;"><div class="card"><div class="card-body">';
 
         if (isset($_GET['halaman'])) {
             if ($_GET['halaman'] == "produkpria") {
@@ -411,21 +365,22 @@ class Admin
             <a class="btn btn-outline-dark" href="index.php?halaman=produkwanita">Data Produk wanita</a>
             <a class="btn btn-outline-danger" href="index.php?halaman=produk">Data Pembelian</a>
             <a class="btn btn-outline-info" href="index.php?halaman=produk">Data User</a>
-<?php
+        <?php
         }
 
         echo '</div></div></div>';
     }
 
     public function tampilkanFooter()
-    {
-        echo '<footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Your Website 2021</span>
+    { ?>
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2021</span>
+                </div>
             </div>
-        </div>
-    </footer>';
+        </footer>
+<?php
     }
 }
 
@@ -433,8 +388,8 @@ class Admin
 $admin = new Admin($koneksi);
 $admin->cekLogin();
 $admin->tampilkanHeader();
-$admin->tampilkanSidebar();
 $admin->tampilkanTopbar();
+$admin->tampilkanSidebar();
 $admin->tampilkanHalaman();
 $admin->tampilkanFooter();
 ?>
