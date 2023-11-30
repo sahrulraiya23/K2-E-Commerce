@@ -21,8 +21,7 @@ $header->render();
                                 <div class="p-3" style="max-width: 700px;">
                                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown">Men
                                         Fashion</h1>
-                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Menyediakan Berbagai
-                                        macam pilihan fashion untuk pria</p>
+                                    <p class="mx-md-5 px-5 animate__animated animate__bounceIn">Provides a variety of fashion choices for men</p>
                                     <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="shop.php">Shop Now</a>
                                 </div>
                             </div>
@@ -50,8 +49,8 @@ $header->render();
                             <img class="img-fluid" src="img/cat-5.jpeg" alt="">
                         </div>
                         <div class="flex-fill pl-3">
-                            <h6>Pria</h6>
-                            <small class="text-body">10 Produk</small>
+                            <h6>Man</h6>
+                            <small class="text-body">10 Product</small>
                         </div>
                     </div>
                 </a>

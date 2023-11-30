@@ -157,7 +157,7 @@ $checkoutPage->renderPage();
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                     href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Kategori</h6>
+                    <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categori</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
@@ -186,12 +186,12 @@ $checkoutPage->renderPage();
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
                             <a href="index.php" class="nav-item nav-link active">Home</a>
-                            <a href="shop.php" class="nav-item nav-link">Produk</a>
+                            <a href="shop.php" class="nav-item nav-link">Product</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Page <i
                                         class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                    <a href="cart.php" class="dropdown-item">Keranjang</a>
+                                    <a href="cart.php" class="dropdown-item">Cart</a>
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
@@ -231,22 +231,22 @@ $checkoutPage->renderPage();
     <div class="container-fluid">
         <div class="row px-xl-5">
             <div class="col-lg-8">
-                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Detail Tagihan</span></h5>
+                <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Bill Details</span></h5>
                 <form action="" method="get"></form>
 
                 <div class="bg-light p-30 mb-5">
 
                     <div class="mb-3">
-                        <label for="nama" class="form-label">Nama</label>
+                        <label for="nama" class="form-label">Name</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" name="nama" placeholder="Masukkan Nama">
                     </div>
 
                     <div class="mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
+                        <label for="alamat" class="form-label">Address</label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat" placeholder="Masukan Alamat Lengkap">
                     </div>
                     <div class="mb-3">
-                        <label for="hp" class="form-label">No.HP</label>
+                        <label for="hp" class="form-label">Number Phone</label>
                         <input type="number" class="form-control" id="exampleFormControlInput1" name="hp" placeholder="Masukan Nomor Telepon">
                     </div>
                     <div class="mb-3">
@@ -289,14 +289,14 @@ $checkoutPage->renderPage();
                             <h6>Rp.<?php echo $grandTotal; ?></h6>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Ongkir</h6>
+                            <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">Rp.<?php echo $ongkir; ?></h6>
                             <?php $totalBelanja = $grandTotal + $ongkir; ?>
                         </div>
                     </div>
                     <div class="pt-2">
                         <div class="d-flex justify-content-between mt-2">
-                            <h5>Total Harga</h5>
+                            <h5>Total </h5>
                             <h5>Rp.<?php echo $totalBelanja; ?></h5>
                         </div>
                     </div>
@@ -306,7 +306,7 @@ $checkoutPage->renderPage();
     </div>
 
     <div class="mb-5">
-        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Metode Pembayaran</span></h5>
+        <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Payment Method</span></h5>
         <div class="bg-light p-30">
 
             <!-- Digital Wallets -->
@@ -336,7 +336,7 @@ $checkoutPage->renderPage();
 
             <!-- Bank Transfer -->
             <div class="mb-7">
-                <h6 class="mb-3 mt-3">Pilih Bank</h6>
+                <h6 class="mb-3 mt-3">Select Bank</h6>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="bankBCA">
                     <label class="form-check-label" for="bankBCA">
@@ -368,7 +368,7 @@ $checkoutPage->renderPage();
                 <!-- Add more banks as needed with images -->
             </div>
 
-            <a href="masuk.php"><button type="submit" name="masukkan" value="upload" class="btn btn-block btn-primary font-weight-bold py-3">BUAT PESANAN</button></button></a>
+            <a href="masuk.php"><button type="submit" name="masukkan" value="upload" class="btn btn-block btn-primary font-weight-bold py-3">MAKE AN ORDER</button></button></a>
         </div>
     </div>
 
@@ -382,9 +382,9 @@ $checkoutPage->renderPage();
     <div class="container-fluid bg-dark text-secondary mt-5 pt-5 ">
         <div class="row px-xl-5 pt-5">
             <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                <h5 class="text-secondary text-uppercase mb-4">Kontak Kami</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Jln.H.E.A.Mokodompit, Kendari,
-                    Sulawesi Tenggara </p>
+                <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>H.E.A.Mokodompit, Kendari,
+                        Southeast Sulawesi </p>
                 <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>E-commerce@gmail.com</p>
                 <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 6789</p>
             </div>
@@ -394,9 +394,9 @@ $checkoutPage->renderPage();
                         <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Produk
-                                Kami</a>
-                            <a class="text-secondary mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                            <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Our Product
+                                </a>
+                            <a class="text-secondary mb-2" href="cart.php"><i class="fa fa-angle-right mr-2"></i>Cart</a>
                             <a class="text-secondary mb-2" href="checkout.php"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact
                                 Us</a>

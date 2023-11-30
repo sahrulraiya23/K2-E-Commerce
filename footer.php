@@ -8,25 +8,25 @@ class footer
         <div class="container-fluid bg-dark text-secondary mt-5 pt-5 ">
             <div class="row px-xl-5 pt-5">
                 <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
-                    <h5 class="text-secondary text-uppercase mb-4">Kontak Kami</h5>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>Jln.H.E.A.Mokodompit, Kendari,
-                        Sulawesi Tenggara </p>
+                    <h5 class="text-secondary text-uppercase mb-4">Contact Us</h5>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary mr-3"></i>H.E.A.Mokodompit, Kendari,
+                        Southeast Sulawesi </p>
                     <p class="mb-2"><i class="fa fa-envelope text-primary mr-3"></i>E-commerce@gmail.com</p>
                     <p class="mb-0"><i class="fa fa-phone-alt text-primary mr-3"></i>+012 345 6789</p>
                 </div>
                 <div class="col-lg-8 col-md-12 mb-5">
                     <div class="row justify-content-end">
                         <div class="col-md-4 mb-5">
-                            <h5 class="text-secondary text-uppercase mb-4">Belanja Cepat</h5>
+                            <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Halaman Utama</a>
-                                <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Produk
+                                <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Product
                                     </a>
                                 <a class="text-secondary mb-2" href="cart.php"><i
-                                        class="fa fa-angle-right mr-2"></i>Keranjang</a>
+                                        class="fa fa-angle-right mr-2"></i>Cart</a>
                                 <a class="text-secondary mb-2" href="checkout.php"><i
                                         class="fa fa-angle-right mr-2"></i>Checkout</a>
-                                <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Kontak Kami
+                                <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact
                                     </a>
                             </div>
                         </div>
