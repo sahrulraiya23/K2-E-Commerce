@@ -44,27 +44,54 @@ $nama = $data['fullname'];
     <?php
     session_start();
     include('koneksi.php');
-    echo "<pre>";
+    
+// Class untuk mengelola informasi pengguna
+class User {
+    private $koneksi;
 
-    // Hapus elemen array jika ada ID produk yang dikirimkan
-    if (isset($_GET['id_produk'])) {
-        $id_produk = $_GET['id_produk'];
-
-        // Hapus item dari $_SESSION['keranjang']
-        if (isset($_SESSION['keranjang'][$id_produk])) {
-            unset($_SESSION['keranjang'][$id_produk]);
-        }
+    public function __construct($db) {
+        $this->koneksi = $db;
     }
 
-    // Periksa apakah $_SESSION['keranjang'] kosong
-    if (empty($_SESSION['keranjang'])) {
-        echo "";
-    } else {
-        print_r($_SESSION['keranjang']);
+    public function getFullName($userId) {
+        $query = "SELECT fullname FROM tb_user WHERE id = $userId";
+        $result = mysqli_query($this->koneksi, $query);
+        $data = mysqli_fetch_assoc($result);
+        return $data['fullname'];
+    }
+}
+
+// Class untuk halaman checkout
+class CheckoutPage {
+    private $user;
+    private $userId;
+
+    public function __construct($userObj, $userId) {
+        $this->user = $userObj;
+        $this->userId = $userId;
     }
 
-    echo "</pre>";
-    ?>
+    public function renderPage() {
+        $nama = $this->user->getFullName($this->userId);
+        ?>
+        
+        <?php
+    }
+}
+
+// Koneksi ke database
+include('koneksi.php');
+
+// Membuat objek User
+$userObj = new User($koneksi);
+$userId = 1; // Ganti dengan id pengguna yang sesuai
+
+// Membuat objek CheckoutPage dan menampilkan halaman checkout
+$checkoutPage = new CheckoutPage($userObj, $userId);
+$checkoutPage->renderPage();
+?>
+
+    
 
     <!-- Topbar Start -->
     <div class="container-fluid">
