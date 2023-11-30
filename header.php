@@ -105,7 +105,7 @@ class header
                     <div class="col-lg-3 d-none d-lg-block">
                         <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
                             href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
-                            <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Kategori</h6>
+                            <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Categori</h6>
                             <i class="fa fa-angle-down text-dark"></i>
                         </a>
                         <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
@@ -134,12 +134,12 @@ class header
                             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0">
                                     <a href="index.php" class="nav-item nav-link active">Home</a>
-                                    <a href="shop.php" class="nav-item nav-link">Produk</a>
+                                    <a href="shop.php" class="nav-item nav-link">Product</a>
                                     <div class="nav-item dropdown">
-                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Page <i
                                                 class="fa fa-angle-down mt-1"></i></a>
                                         <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                                            <a href="cart.php" class="dropdown-item">Keranjang</a>
+                                            <a href="cart.php" class="dropdown-item">Cart</a>
                                             <a href="checkout.php" class="dropdown-item">Checkout</a>
                                         </div>
                                     </div>
