@@ -215,10 +215,9 @@ $header ->render();
         <!-- Shop Detail End -->
 
 
-    <?php
-              main
-    // Akhir dari if (isset($_GET['idp']))
-    }?>
+  <?php
+      }
+?>
 
 
 
@@ -270,8 +269,13 @@ $header ->render();
 
     <!-- Contact Javascript File -->
     <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-main
+<script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
 
 
 main
@@ -282,6 +286,4 @@ include('footer.php');
 $footer = new footer();
 $footer->render();
 ?> 
-=======
 </html>
-main
