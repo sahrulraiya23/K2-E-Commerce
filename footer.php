@@ -17,17 +17,17 @@ class footer
                 <div class="col-lg-8 col-md-12 mb-5">
                     <div class="row justify-content-end">
                         <div class="col-md-4 mb-5">
-                            <h5 class="text-secondary text-uppercase mb-4">Quick Shop</h5>
+                            <h5 class="text-secondary text-uppercase mb-4">Belanja Cepat</h5>
                             <div class="d-flex flex-column justify-content-start">
-                                <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                                <a class="text-secondary mb-2" href="index.php"><i class="fa fa-angle-right mr-2"></i>Halaman Utama</a>
                                 <a class="text-secondary mb-2" href="shop.php"><i class="fa fa-angle-right mr-2"></i>Produk
-                                    Kami</a>
+                                    </a>
                                 <a class="text-secondary mb-2" href="cart.php"><i
                                         class="fa fa-angle-right mr-2"></i>Keranjang</a>
                                 <a class="text-secondary mb-2" href="checkout.php"><i
                                         class="fa fa-angle-right mr-2"></i>Checkout</a>
-                                <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Contact
-                                    Us</a>
+                                <a class="text-secondary" href="contact.php"><i class="fa fa-angle-right mr-2"></i>Kontak Kami
+                                    </a>
                             </div>
                         </div>
                     </div>
