@@ -1,20 +1,11 @@
+
+
 <?php
-session_start();
-include 'koneksi.php';
-
-// Jika tidak ada session pelanggan (belum login)
-if (!isset($_SESSION["pelanggan"])) {
-    // Diarahkan ke ke login.php
-    echo "<script>alert('Silahkan login!')</script>";
-    echo "<script>location='login.php';</script>";
-}
-
-if (!isset($_SESSION["keranjang"])) {
-    // Diarahkan ke ke index.php
-    echo "<script>alert('Keranjang kosong!')</script>";
-    echo "<script>location='index.php';</script>";
-}
-
+include('koneksi.php');
+$query = "SELECT*FROM tb_user";
+$sql = mysqli_query($koneksi, $query);
+$data = mysqli_fetch_array($sql);
+$nama = $data['fullname'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,28 +36,62 @@ if (!isset($_SESSION["keranjang"])) {
 </head>
 
 <body>
+    <?php
+    //koneksi ke database
+    include 'koneksi.php';
+    ?>
+    
+    <?php
+    session_start();
+    include('koneksi.php');
+    echo "<pre>";
+
+    // Hapus elemen array jika ada ID produk yang dikirimkan
+    if (isset($_GET['id_produk'])) {
+        $id_produk = $_GET['id_produk'];
+
+        // Hapus item dari $_SESSION['keranjang']
+        if (isset($_SESSION['keranjang'][$id_produk])) {
+            unset($_SESSION['keranjang'][$id_produk]);
+        }
+    }
+
+    // Periksa apakah $_SESSION['keranjang'] kosong
+    if (empty($_SESSION['keranjang'])) {
+        echo "";
+    } else {
+        print_r($_SESSION['keranjang']);
+    }
+
+    echo "</pre>";
+    ?>
+
     <!-- Topbar Start -->
     <div class="container-fluid">
         <div class="row bg-secondary py-1 px-xl-5">
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">Akun
-                            Saya</button>
+                        <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">
+                            <?php echo $nama; ?>
+                        </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <button class="dropdown-item" type="button">Sign in</button>
-                            <button class="dropdown-item" type="button">Sign up</button>
+                            <a href="login.php"><button class="dropdown-item" type="button">Sign in</button></a>
+                            <a href="register.php"><button class="dropdown-item" type="button">Sign up</button></a>
+                            <a href="login.php"><button class="dropdown-item" type="button">log out</button></a>
                         </div>
                     </div>
                 </div>
                 <div class="d-inline-flex align-items-center d-block d-lg-none">
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-heart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                        <span class="badge text-dark border border-dark rounded-circle"
+                            style="padding-bottom: 2px;">0</span>
                     </a>
                     <a href="" class="btn px-0 ml-2">
                         <i class="fas fa-shopping-cart text-dark"></i>
-                        <span class="badge text-dark border border-dark rounded-circle" style="padding-bottom: 2px;">0</span>
+                        <span class="badge text-dark border border-dark rounded-circle"
+                            style="padding-bottom: 2px;">0</span>
                     </a>
                 </div>
             </div>
@@ -103,14 +128,17 @@ if (!isset($_SESSION["keranjang"])) {
     <div class="container-fluid bg-dark mb-30">
         <div class="row px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
+                <a class="btn d-flex align-items-center justify-content-between bg-primary w-100" data-toggle="collapse"
+                    href="#navbar-vertical" style="height: 65px; padding: 0 30px;">
                     <h6 class="text-dark m-0"><i class="fa fa-bars mr-2"></i>Kategori</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 bg-light"
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 999;">
                     <div class="navbar-nav w-100">
                         <div class="nav-item dropdown dropright">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i class="fa fa-angle-right float-right mt-1"></i></a>
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dresses <i
+                                    class="fa fa-angle-right float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute rounded-0 border-0 m-0">
                                 <a href="" class="dropdown-item">Men's Dresses</a>
                                 <a href="" class="dropdown-item">Women's Dresses</a>
@@ -133,7 +161,8 @@ if (!isset($_SESSION["keranjang"])) {
                             <a href="index.php" class="nav-item nav-link active">Home</a>
                             <a href="shop.php" class="nav-item nav-link">Produk</a>
                             <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i class="fa fa-angle-down mt-1"></i></a>
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Halaman <i
+                                        class="fa fa-angle-down mt-1"></i></a>
                                 <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
                                     <a href="cart.php" class="dropdown-item">Keranjang</a>
                                     <a href="checkout.php" class="dropdown-item">Checkout</a>
@@ -144,7 +173,8 @@ if (!isset($_SESSION["keranjang"])) {
                         <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                             <a href="cart.php" class="btn px-0 ml-3">
                                 <i class="fas fa-shopping-cart text-primary"></i>
-                                <span class="badge text-secondary border border-secondary rounded-circle" style="padding-bottom: 2px;">0</span>
+                                <span class="badge text-secondary border border-secondary rounded-circle"
+                                    style="padding-bottom: 2px;">0</span>
                             </a>
                         </div>
                     </div>
@@ -175,29 +205,28 @@ if (!isset($_SESSION["keranjang"])) {
         <div class="row px-xl-5">
             <div class="col-lg-8">
                 <h5 class="section-title position-relative text-uppercase mb-3"><span class="bg-secondary pr-3">Detail Tagihan</span></h5>
-                <form action="" method="get">
+                <form action="" method="get"></form>
 
-                    <div class="bg-light p-30 mb-5">
+                <div class="bg-light p-30 mb-5">
 
-                        <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="nama" value="<?= $_SESSION['pelanggan']['fullname']; ?>" placeholder="Masukkan Nama">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="alamat" class="form-label">Alamat</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat" placeholder="Masukan Alamat Lengkap">
-                        </div>
-                        <div class="mb-3">
-                            <label for="hp" class="form-label">No.HP</label>
-                            <input type="number" class="form-control" id="exampleFormControlInput1" name="hp" placeholder="Masukan Nomor Telepon">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $_SESSION['pelanggan']['email']; ?>" name="email" placeholder="Masukan Email">
-                        </div>
+                    <div class="mb-3">
+                        <label for="nama" class="form-label">Nama</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="nama" placeholder="Masukkan Nama">
                     </div>
-                </form>
+
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label">Alamat</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="alamat" placeholder="Masukan Alamat Lengkap">
+                    </div>
+                    <div class="mb-3">
+                        <label for="hp" class="form-label">No.HP</label>
+                        <input type="number" class="form-control" id="exampleFormControlInput1" name="hp" placeholder="Masukan Nomor Telepon">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="email" placeholder="Masukan Email">
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4">
@@ -245,7 +274,6 @@ if (!isset($_SESSION["keranjang"])) {
                         </div>
                     </div>
                 </div>
-                <a href="index.php"><button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Lanjutkan belanja</button></a>
             </div>
         </div>
     </div>
@@ -256,13 +284,6 @@ if (!isset($_SESSION["keranjang"])) {
 
             <!-- Digital Wallets -->
             <div class="bg-light p-20 mb-5">
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="radio" name="paymentMethod" id="gopayPayment">
-                    <label class="form-check-label" for="gopayPayment">
-                        <img src="img/dana.jpeg" alt="dana" class="mr-2" width="30">
-                        Dana
-                    </label>
-                </div>
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="radio" name="paymentMethod" id="gopayPayment">
                     <label class="form-check-label" for="gopayPayment">
