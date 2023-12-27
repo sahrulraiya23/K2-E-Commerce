@@ -15,8 +15,9 @@ Anggota Kelompok 2  =
 9. E1E122062_Khaerunni Salsa Billah
 10. E1E122078_Sherly Dwi Puspita
 11. E1E122083_Ade Syifa Badarudin
-12. E1E122123_Muhammad Saharullah Raiya
-13. E1E122126_Nadya Elfareta Azarin
-14. E1E122141_Sitti Rahmayani Ose
-15. E1E122149_Yun Muntarti
-16. E1E122148_Wifna Naisyarah
+12. E1E122102_Izan Fahrani
+13. E1E122123_Muhammad Saharullah Raiya
+14. E1E122126_Nadya Elfareta Azarin
+15. E1E122141_Sitti Rahmayani Ose
+16. E1E122149_Yun Muntarti
+17. E1E122148_Wifna Naisyarah
