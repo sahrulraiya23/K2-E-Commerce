@@ -14,11 +14,12 @@ Anggota Kelompok 2  =
 8. E1E122041_Amar Adi Ismoyo
 9. E1E122059_Jabir Muktabir
 10. E1E122062_Khaerunni Salsa Billah
-11. E1E122078_Sherly Dwi Puspita
-12. E1E122083_Ade Syifa Badarudin
-13. E1E122102_Izan Fahrani
-14. E1E122123_Muhammad Saharullah Raiya
-15. E1E122126_Nadya Elfareta Azarin
-16. E1E122141_Sitti Rahmayani Ose
-17. E1E122149_Yun Muntarti
-18. E1E122148_Wifna Naisyarah
+11. E1E122067_Muhammad Raihan
+12. E1E122078_Sherly Dwi Puspita
+13. E1E122083_Ade Syifa Badarudin
+14. E1E122102_Izan Fahrani
+15. E1E122123_Muhammad Saharullah Raiya
+16. E1E122126_Nadya Elfareta Azarin
+17. E1E122141_Sitti Rahmayani Ose
+18. E1E122149_Yun Muntarti
+19. E1E122148_Wifna Naisyarah
