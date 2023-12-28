@@ -118,19 +118,8 @@ $header->render();
 
             parent::__construct ($data['id'], $data['nama_produk'], $data['harga'], $data['gambar']); //disini penerapan parentnya
             return $this;
-        }
-    }
 
-    class deskripsi extends Productpria //Polymorphism dengan menambahkan deskripsi
-    {
-        private $koneksi;
-
-        public function __construct($koneksi)
-        {
-            $this->koneksi = $koneksi;
-        }
-
-        public function getdesc()
+            public function getdesc()
         {
             $query = "SELECT * FROM tb_produk_pria WHERE id = ".$this->getId();
             $hasil = mysqli_query($this->koneksi, $query);
@@ -138,15 +127,15 @@ $header->render();
             
             return $data['detail_singkat'];
         }
-
+        }
     }
+
 
     // Penggunaan
     ?>
     <?php
     $koneksi = mysqli_connect("localhost", "root", "", "ecommerce");
     $productRepository = new ProductpriaRepository($koneksi);
-    $deskripsi = new deskripsi($koneksi);
     ?>
 
     <div class='container-fluid pt-5 pb-3' id="produkpria">
@@ -155,8 +144,7 @@ $header->render();
 
         <div class='row'>
             <?php for ($i = 1; $i <= 4; $i++) : ?>
-                <?php $product = $productRepository->getProductById($i);
-                $desc = $deskripsi ?>
+                <?php $product = $productRepository->getProductById($i); ?>
                 <div class='col-lg-3 col-md-4 col-sm-6 pb-1'>
                     <div class='product-item bg-light mb-4'>
                         <div class='product-img position-relative overflow-hidden'>
@@ -171,7 +159,7 @@ $header->render();
                                 <?= $product->getName() ?>
                             </a>
                             <a class='h6 text-decoration-none text-truncate' href=''>
-                                <?= $desc->getdesc() ?><!-- Penerapan Polymorphism -->
+                                <?= $product->getdesc() ?><!-- Penerapan Polymorphism -->
                             </a>
                             <div class='d-flex align-items-center justify-content-center mt-2'>
                                 <h5>Rp.
