@@ -118,8 +118,8 @@ $header->render();
 
             parent::__construct ($data['id'], $data['nama_produk'], $data['harga'], $data['gambar']); //disini penerapan parentnya
             return $this;
-
-            public function getdesc()
+        }
+        public function getdesc()
         {
             $query = "SELECT * FROM tb_produk_pria WHERE id = ".$this->getId();
             $hasil = mysqli_query($this->koneksi, $query);
@@ -127,7 +127,7 @@ $header->render();
             
             return $data['detail_singkat'];
         }
-        }
+        
     }
 
 
