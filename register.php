@@ -87,7 +87,7 @@
                             {
                                 private $koneksi; //Ini Encapsulasi Pembungkusan  Yang Berarti $koneksi Hanya Bisa Diakses Dari Class ini saja
 
-                                public function __construct($koneksi) //Mengambil Construct Dari Kelas Parent
+                                public function __construct($koneksi) 
                                 {
                                     $this->koneksi = $koneksi;
                                 }
