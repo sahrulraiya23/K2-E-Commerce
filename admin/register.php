@@ -55,7 +55,7 @@
                                 </a>
                             </form>
                             <?php
-                            include 'koneksi.php';
+                            include '../koneksi.php';
 
                             if (isset($_GET['input']) && $_GET['input'] == 'Register Account') {
                                 $username = $_GET['username'];

@@ -54,8 +54,8 @@
                             include 'koneksi.php';
 
                             class User
-                            {   
-                                private $koneksi;
+                            {
+                                protected $koneksi;
 
                                 public function __construct($koneksi)
                                 {
@@ -70,11 +70,40 @@
                                     $query = "INSERT INTO tb_user(fullname, email, password) VALUES ('$fullname', '$email', '$hashedPassword')";
                                     $sql = mysqli_query($this->koneksi, $query);
 
-                                    if($sql){
+                                    if ($sql) {
                                         header("location: login.php?success=1");
                                         exit();
-                                    }else{
-                                        echo "Error: ".$query."<br>".mysqli_error($this->koneksi);
+                                    } else {
+                                        echo "Error: " . $query . "<br>" . mysqli_error($this->koneksi);
+                                    }
+                                }
+                            }
+                            interface RegisterAdmin
+                            {
+                                public function daftarAkun($username, $password, $nama_lengkap); //Disini Saya Buat Interface Untuk Polimorfisme.
+                                // Dimana Jika Saya Membuat Interface  metodenya Harus Di Panggil pada Kelas. Dan Saya Akan Buat 3 Parameter dimana akan digunakan di kelas berikutnya
+                            }
+                            class Admin  implements RegisterAdmin
+                            {
+                                private $koneksi; //Ini Encapsulasi Pembungkusan  Yang Berarti $koneksi Hanya Bisa Diakses Dari Class ini saja
+
+                                public function __construct($koneksi) //Mengambil Construct Dari Kelas Parent
+                                {
+                                    $this->koneksi = $koneksi;
+                                }
+                                public function daftarAkun($username, $password, $nama_lengkap) //Karena Interface Method Harus Digunakan
+                                {
+                                    // Hash password menggunakan password_hash()
+                                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+                                    $query = "INSERT INTO admin(username,password,nama_lengkap) VALUES ('$username','$hashedPassword','$nama_lengkap')";
+                                    $sql = mysqli_query($this->koneksi, $query);
+
+                                    if ($sql) {
+                                        header("location: admin/login.php?success=1");
+                                        exit();
+                                    } else {
+                                        echo "Error: " . $query . "<br>" . mysqli_error($this->koneksi);
                                     }
                                 }
                             }
@@ -86,9 +115,14 @@
                                 $username = $_GET['fullname'];
                                 $email = $_GET['email'];
                                 $password = $_GET['password'];
-                                
+
                                 $user->daftarAkun($username, $email, $password);
                             }
+                            $admin = new Admin($koneksi);
+                            $username = $_GET['username'];
+                            $password = $_GET['password'];
+                            $nama_lengkap = $_GET['nama_lengkap'];
+                            $admin->daftarAkun($username, $password, $nama_lengkap);
                             ?>
 
                             <hr>
