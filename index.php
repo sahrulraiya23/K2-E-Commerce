@@ -144,9 +144,6 @@ $header->render();
                             <a class='h6 text-decoration-none text-truncate' href=''>
                                 <?= $product->getName() ?>
                             </a>
-                            <a class='h6 text-decoration-none text-truncate' href=''>
-                                <?= $product->getdesc() ?>
-                            </a>
                             <div class='d-flex align-items-center justify-content-center mt-2'>
                                 <h5>Rp.
                                     <?= number_format($product->getPrice(), 0, ',', '.') ?>
