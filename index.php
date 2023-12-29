@@ -62,9 +62,6 @@ $header->render();
     <!-- Products Start -->
 
     <?php
-    //Di dalam kode index.php yang ada hanya class object untuk memvisibilitas data produk yang ada di database
-
-
     class Productpria
     {
         private $id;
@@ -101,7 +98,7 @@ $header->render();
         }
     }
 
-    class ProductpriaRepository extends Productpria //Kita menambahkan inheritance dengan mengextends product pria
+    class ProductpriaRepository
     {
         private $koneksi;
 
@@ -116,22 +113,11 @@ $header->render();
             $hasil = mysqli_query($this->koneksi, $query);
             $data = mysqli_fetch_array($hasil);
 
-            parent::__construct ($data['id'], $data['nama_produk'], $data['harga'], $data['gambar']); //disini penerapan parentnya
-            return $this;
-        }
-        public function getdesc()
-        {
-            $query = "SELECT * FROM tb_produk_pria WHERE id = ".$this->getId();
-            $hasil = mysqli_query($this->koneksi, $query);
-            $data = mysqli_fetch_array($hasil);
-            
-            return $data['detail_singkat'];
+            return new Productpria($data['id'], $data['nama_produk'], $data['harga'], $data['gambar']);
         }
         
     }
 
-
-    // Penggunaan
     ?>
     <?php
     $koneksi = mysqli_connect("localhost", "root", "", "ecommerce");
@@ -159,7 +145,7 @@ $header->render();
                                 <?= $product->getName() ?>
                             </a>
                             <a class='h6 text-decoration-none text-truncate' href=''>
-                                <?= $product->getdesc() ?><!-- Penerapan Polymorphism -->
+                                <?= $product->getdesc() ?>
                             </a>
                             <div class='d-flex align-items-center justify-content-center mt-2'>
                                 <h5>Rp.
